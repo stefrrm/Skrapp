@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 
 
 
@@ -21,6 +21,7 @@ export class ProfesorPage implements OnInit {
     { id: 3, nombre: 'Machine Learning', codigo: 'INF668', seccion: '055D' },
   ];
 
+
   constructor(private activeroute: ActivatedRoute, private router: Router) {
     this.activeroute.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation()?.extras.state) {
@@ -28,6 +29,19 @@ export class ProfesorPage implements OnInit {
         console.log(this.router.getCurrentNavigation()?.extras.state?.['id']);
       }
     })
+  }
+
+  generarQR(nombre: string, id: number, codigo: string, seccion: string) {
+    let setData: NavigationExtras = {
+      state: {
+        nombre: nombre,
+        id: id,
+        codigo: codigo,
+        seccion: seccion
+      }
+    };
+
+    this.router.navigate(['/generarqr'], setData)
   }
 
   ngOnInit() {
