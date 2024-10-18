@@ -6,13 +6,14 @@
 
 <ion-content [fullscreen]="true">
   <ion-card>
+    <img [src]="qrDataURL" *ngIf="qrDataURL" class="qrimage" />
     <ion-card-header>
       <ion-card-title>Seccion : {{seccionCurso}}</ion-card-title>
       <ion-card-subtitle>ID : {{idCurso}}</ion-card-subtitle>
     </ion-card-header>
 
     <ion-card-content>
-
+      Here's a small text description for the card content. Nothing more, nothing less.
     </ion-card-content>
   </ion-card>
 </ion-content>

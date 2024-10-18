@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import * as qrcode from 'qrcode-generator';
 
 @Component({
   selector: 'app-generarqr',
@@ -11,6 +12,8 @@ export class GenerarqrPage implements OnInit {
   nombreCurso = "";
   seccionCurso = "";
   idCurso = "";
+  codigoCurso = "";
+  qrDataURL = "";
 
   constructor(private activeroute: ActivatedRoute, private router: Router) {
     this.activeroute.queryParams.subscribe(params => {
@@ -18,12 +21,25 @@ export class GenerarqrPage implements OnInit {
         this.nombreCurso = this.router.getCurrentNavigation()?.extras.state?.['nombre'];
         this.seccionCurso = this.router.getCurrentNavigation()?.extras.state?.['seccion'];
         this.idCurso = this.router.getCurrentNavigation()?.extras.state?.['id'];
-        console.log(this.router.getCurrentNavigation()?.extras.state?.['codigo']);
+        this.codigoCurso = (this.router.getCurrentNavigation()?.extras.state?.['codigo']);
       }
     });
   }
 
+  generadorQR() {
+    if (this.idCurso) {
+      const fechaActual = new Date().toISOString().split('T')[0];
+      const data = `${this.codigoCurso}-${this.seccionCurso}-${fechaActual}`;
+
+      let qr = qrcode(4, `L`);
+      qr.addData(data);
+      qr.make();
+      this.qrDataURL = qr.createDataURL(4);
+    }
+  }
+
   ngOnInit() {
+    this.generadorQR();
   }
 
 }
