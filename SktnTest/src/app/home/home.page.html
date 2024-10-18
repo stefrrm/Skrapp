@@ -1,20 +1,33 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Welcome to Skrapp
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Inicia Sesion</ion-card-title>
+        <ion-card-subtitle></ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form [formGroup]="usuario">
+          <ion-item>
+            <ion-input label="User" labelPlacement="floating" placeholder="Nombre Usuario"
+              formControlName="user"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input label="Pass" labelPlacement="floating" placeholder="Contraseña"
+              formControlName="pass"></ion-input>
+          </ion-item>
+        </form>
+      </ion-card-content>
+
+      <ion-button shape="round" color="success" (click)="Ingreso()" fill="outline">Ingresar</ion-button>
+    </ion-card>
   </div>
 </ion-content>
