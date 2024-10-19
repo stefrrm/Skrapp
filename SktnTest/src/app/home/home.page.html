@@ -15,7 +15,7 @@
       </ion-card-header>
 
       <ion-card-content>
-        <form [formGroup]="usuario">
+        <form [formGroup]="usuario" (ngSubmit)="Ingreso()">
           <ion-item>
             <ion-input label="User" labelPlacement="floating" placeholder="Nombre Usuario"
               formControlName="user"></ion-input>
@@ -24,10 +24,11 @@
             <ion-input label="Pass" labelPlacement="floating" placeholder="Contraseña"
               formControlName="pass"></ion-input>
           </ion-item>
+          <ion-button shape="round" color="success" (click)="Ingreso()" fill="outline">Ingresar</ion-button>
         </form>
       </ion-card-content>
 
-      <ion-button shape="round" color="success" (click)="Ingreso()" fill="outline">Ingresar</ion-button>
+
     </ion-card>
   </div>
 </ion-content>
