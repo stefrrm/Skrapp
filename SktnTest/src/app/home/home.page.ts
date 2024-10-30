@@ -29,57 +29,41 @@ export class HomePage {
   }
 
   Ingreso() {
-    let setData: NavigationExtras = {
-      state: {
-        id: this.usuario.value.user,
-        pass: this.usuario.value.pass
-      }
-    };
+    const { user, pass } = this.usuario.value;  // Desestructurar para mayor claridad
 
-    /*  const loginMap: { [key: string]: string } = {
-        'stefano:1234': '/profesor',
-        'giamantovani:1234': '/profesor',
-        'johnperez:4321': '/alumno',
-        'walter:4321': '/alumno',
-        'charlesmariano:6969': '/profesor'
-      };
-  
-      const userPassKey = `${this.usuario.value.user}:${this.usuario.value.pass}`;
-  
-  
-      if (loginMap[userPassKey]) {
-        this.router.navigate([loginMap[userPassKey]], setData);
-      } else {
-        this.presentAlert("Error Login", "Usuario o contraseña son incorrectos");
-      }
-    } */
-
-    try {
-      if (this.usuario.value.user == "profesor" && this.usuario.value.pass == "1234") {
-        this.authService.login();
-        this.router.navigate(['/profesor'], setData);
-      } else if (this.usuario.value.user == "alumno" && this.usuario.value.pass == "4321") {
-        this.authService.login();
-        this.router.navigate(['/alumno'], setData);
-      } else {
+    this.authService.login(user, pass).subscribe({
+      next: (response) => {
+        // Si el login es exitoso
+        if (response.role) {
+          this.authService.setAuthenticated(true, response.role); // Guardar el estado y el rol
+          // Redirigir según el rol
+          if (response.role === 'profesor') {
+            this.router.navigate(['/profesor']);
+          } else if (response.role === 'alumno') {
+            this.router.navigate(['/alumno']);
+          } else {
+            this.presentAlert("Error", "Rol no reconocido");
+          }
+        } else {
+          this.presentAlert("Error Login", "Usuario o contraseña incorrectos");
+        }
+      },
+      error: (error) => {
+        // Si hay un error en el login
         this.presentAlert("Error Login", "Usuario o contraseña incorrectos");
       }
-    }
-
-    catch (error: any) {
-      this.presentAlert("Error Login", error)
-    }
+    });
   }
 
 
 
-  async presentAlert(titulo: string, mensaje: string) {
+  async presentAlert(header: string, message: string) {
     const alert = await this.alertController.create({
-      header: 'Info Login',
-      subHeader: titulo,
-      message: mensaje,
-      buttons: ['Action']
+      header: header,
+      message: message,
+      buttons: ['OK']
     });
+
     await alert.present();
   }
 
