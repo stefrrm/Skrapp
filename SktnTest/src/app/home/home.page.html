@@ -11,18 +11,17 @@
     <ion-card>
       <ion-card-header>
         <ion-card-title>Inicia Sesion</ion-card-title>
-        <ion-card-subtitle></ion-card-subtitle>
       </ion-card-header>
 
       <ion-card-content>
         <form [formGroup]="usuario">
           <ion-item>
-            <ion-input label="User" labelPlacement="floating" placeholder="Nombre Usuario"
-              formControlName="user"></ion-input>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input formControlName="email"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input label="Pass" labelPlacement="floating" placeholder="Contraseña"
-              formControlName="pass"></ion-input>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
           </ion-item>
         </form>
       </ion-card-content>

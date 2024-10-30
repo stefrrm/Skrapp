@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthserviceService {
   private authenticated = false;
-  private apiUrl = 'http://localhost:5000/login';  // Asegúrate de que la URL sea correcta
+  private apiUrl = 'http://localhost:5000';  // URL base actualizada
   private userRole: string | null = null;
+  private userId: number | null = null;
 
   constructor(private http: HttpClient) { }
 
@@ -16,29 +18,48 @@ export class AuthserviceService {
     return this.authenticated;
   }
 
-  // Método para hacer login
-  login(username: string, password: string): Observable<any> {
+  // Método para el login
+  login(email: string, password: string): Observable<any> {
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json' // Tipo de contenido que envías
+      'Content-Type': 'application/json'
     });
-
-    // Envío de credenciales a la API
-    return this.http.post<any>(this.apiUrl, { username, password }, { headers });
+    const loginUrl = `${this.apiUrl}/login`;  // Concatenación de ruta específica
+    return this.http.post<any>(loginUrl, { email, password }, { headers }).pipe(
+      catchError(err => {
+        console.error('Error en el login', err);
+        return throwError(err);
+      })
+    );
   }
 
-
-  // Método para establecer el estado de autenticación y el rol
-  setAuthenticated(value: boolean, role: string) {
+  setAuthenticated(value: boolean, role: string, id: number) {
     this.authenticated = value;
-    this.userRole = role; // Guardamos el rol del usuario
+    this.userRole = role;
+    this.userId = id;
   }
 
   getUserRole(): string | null {
-    return this.userRole; // Retorna el rol del usuario
+    return this.userRole;
+  }
+
+  getUserId(): number | null {
+    return this.userId;
+  }
+
+  // Método para obtener datos del profesor y sus cursos
+  obtenerProfesorYCursos(id: number): Observable<any> {
+    const profesorUrl = `${this.apiUrl}/profesor/${id}`;  // Concatenación de ruta específica
+    return this.http.get<any>(profesorUrl).pipe(
+      catchError(err => {
+        console.error('Error al obtener datos del profesor', err);
+        return throwError(err);
+      })
+    );
   }
 
   logout() {
     this.authenticated = false;
-    this.userRole = null; // Reiniciar el rol al hacer logout
+    this.userRole = null;
+    this.userId = null;
   }
 }

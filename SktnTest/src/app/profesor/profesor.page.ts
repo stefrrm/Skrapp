@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-
-
+import { AuthserviceService } from '../service/authservice.service';
 
 @Component({
   selector: 'app-profesor',
@@ -10,41 +9,47 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 })
 export class ProfesorPage implements OnInit {
 
-  now = new Date();
+  user = '';  // Almacena el ID del profesor
+  nombreProfesor = '';  // Almacena el nombre del profesor
+  cursos: any[] = [];  // Almacena la lista de cursos del profesor
 
-  user = '';
-  fecha = this.now.toLocaleString();
-
-  cursos = [
-    { id: 1, nombre: 'Aplicaciones Moviles', codigo: 'INF666', seccion: '033V' },
-    { id: 2, nombre: 'Arquitectura', codigo: 'INF667', seccion: '014v' },
-    { id: 3, nombre: 'Machine Learning', codigo: 'INF668', seccion: '055D' },
-  ];
-
-
-  constructor(private activeroute: ActivatedRoute, private router: Router) {
+  constructor(
+    private activeroute: ActivatedRoute,
+    private router: Router,
+    private authService: AuthserviceService
+  ) {
+    // Suscribirse a los parámetros de la ruta
     this.activeroute.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation()?.extras.state) {
-        this.user = this.router.getCurrentNavigation()?.extras.state?.['id'];
-        console.log(this.router.getCurrentNavigation()?.extras.state?.['id']);
+      const navigation = this.router.getCurrentNavigation();
+      if (navigation?.extras.state) {
+        this.user = navigation.extras.state['id'];  // Obtener el ID del profesor
       }
-    })
-  }
-
-  generarQR(nombre: string, id: number, codigo: string, seccion: string) {
-    let setData: NavigationExtras = {
-      state: {
-        nombre: nombre,
-        id: id,
-        codigo: codigo,
-        seccion: seccion
-      }
-    };
-
-    this.router.navigate(['/generarqr'], setData)
+    });
   }
 
   ngOnInit() {
+    this.user = history.state.id;  // Toma el ID directamente del estado
+    if (this.user) {
+      const idProfesor = Number(this.user);
+      this.cargarDatos(idProfesor);
+    } else {
+      console.error("ID de profesor no encontrado");
+    }
   }
 
+  cargarDatos(idProfesor: number) {
+    this.authService.obtenerProfesorYCursos(idProfesor).subscribe(
+      (data: any) => {
+        if (data && data.profesor) {
+          this.nombreProfesor = data.profesor.nombre;
+          this.cursos = data.curso; // Asegúrate de usar `curso` o `cursos` como esté definido en tu API
+        } else {
+          console.error("No se encontró información del profesor");
+        }
+      },
+      error => {
+        console.error("Error al obtener los datos del profesor", error);
+      }
+    );
+  }
 }

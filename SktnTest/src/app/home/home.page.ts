@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { NavigationExtras } from '@angular/router';
 import { AuthserviceService } from '../service/authservice.service';
 
 @Component({
@@ -15,12 +14,11 @@ export class HomePage {
 
   constructor(private router: Router, private alertController: AlertController, private authService: AuthserviceService) {
     this.usuario = new FormGroup({
-      user: new FormControl('', [
+      email: new FormControl('', [
         Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(20)
+        Validators.email // Validación de correo
       ]),
-      pass: new FormControl('', [
+      password: new FormControl('', [
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(20)
@@ -29,33 +27,32 @@ export class HomePage {
   }
 
   Ingreso() {
-    const { user, pass } = this.usuario.value;  // Desestructurar para mayor claridad
+    const { email, password } = this.usuario.value;
 
-    this.authService.login(user, pass).subscribe({
+    this.authService.login(email, password).subscribe({
       next: (response) => {
-        // Si el login es exitoso
         if (response.role) {
-          this.authService.setAuthenticated(true, response.role); // Guardar el estado y el rol
-          // Redirigir según el rol
-          if (response.role === 'profesor') {
-            this.router.navigate(['/profesor']);
-          } else if (response.role === 'alumno') {
-            this.router.navigate(['/alumno']);
-          } else {
-            this.presentAlert("Error", "Rol no reconocido");
-          }
+          this.authService.setAuthenticated(true, response.role, response.id);
+          this.navigateBasedOnRole(response.role, response.id); // Pasa el ID aquí
         } else {
           this.presentAlert("Error Login", "Usuario o contraseña incorrectos");
         }
       },
-      error: (error) => {
-        // Si hay un error en el login
+      error: () => {
         this.presentAlert("Error Login", "Usuario o contraseña incorrectos");
       }
     });
   }
 
-
+  navigateBasedOnRole(role: string, id: number) {
+    if (role === 'profesor') {
+      this.router.navigate(['/profesor'], { state: { id: id } });  // Pasa el ID en el estado
+    } else if (role === 'alumno') {
+      this.router.navigate(['/alumno']);
+    } else {
+      this.presentAlert("Error", "Rol no reconocido");
+    }
+  }
 
   async presentAlert(header: string, message: string) {
     const alert = await this.alertController.create({
@@ -63,9 +60,6 @@ export class HomePage {
       message: message,
       buttons: ['OK']
     });
-
     await alert.present();
   }
-
-
 }
