@@ -9,26 +9,26 @@ import { AuthserviceService } from '../service/authservice.service';
 })
 export class ProfesorPage implements OnInit {
 
-  user = '';  // Almacena el ID del profesor
-  nombreProfesor = '';  // Almacena el nombre del profesor
-  cursos: any[] = [];  // Almacena la lista de cursos del profesor
+  user = '';
+  nombreProfesor = '';
+  cursos: any[] = [];
 
   constructor(
     private activeroute: ActivatedRoute,
     private router: Router,
     private authService: AuthserviceService
   ) {
-    // Suscribirse a los parámetros de la ruta
+
     this.activeroute.queryParams.subscribe(params => {
       const navigation = this.router.getCurrentNavigation();
       if (navigation?.extras.state) {
-        this.user = navigation.extras.state['id'];  // Obtener el ID del profesor
+        this.user = navigation.extras.state['id'];
       }
     });
   }
 
   ngOnInit() {
-    this.user = history.state.id;  // Toma el ID directamente del estado
+    this.user = history.state.id;
     if (this.user) {
       const idProfesor = Number(this.user);
       this.cargarDatos(idProfesor);
@@ -42,7 +42,7 @@ export class ProfesorPage implements OnInit {
       (data: any) => {
         if (data && data.profesor) {
           this.nombreProfesor = data.profesor.nombre;
-          this.cursos = data.curso; // Asegúrate de usar `curso` o `cursos` como esté definido en tu API
+          this.cursos = data.curso;
         } else {
           console.error("No se encontró información del profesor");
         }

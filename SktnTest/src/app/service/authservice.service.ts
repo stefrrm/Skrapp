@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class AuthserviceService {
   private authenticated = false;
-  private apiUrl = 'http://localhost:5000';  // URL base actualizada
+  private apiUrl = 'http://localhost:5000';
   private userRole: string | null = null;
   private userId: number | null = null;
 
@@ -23,7 +23,7 @@ export class AuthserviceService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    const loginUrl = `${this.apiUrl}/login`;  // Concatenación de ruta específica
+    const loginUrl = `${this.apiUrl}/login`;
     return this.http.post<any>(loginUrl, { email, password }, { headers }).pipe(
       catchError(err => {
         console.error('Error en el login', err);
@@ -46,9 +46,9 @@ export class AuthserviceService {
     return this.userId;
   }
 
-  // Método para obtener datos del profesor y sus cursos
+  // Método datos del profesor y sus cursos
   obtenerProfesorYCursos(id: number): Observable<any> {
-    const profesorUrl = `${this.apiUrl}/profesor/${id}`;  // Concatenación de ruta específica
+    const profesorUrl = `${this.apiUrl}/profesor/${id}`;
     return this.http.get<any>(profesorUrl).pipe(
       catchError(err => {
         console.error('Error al obtener datos del profesor', err);

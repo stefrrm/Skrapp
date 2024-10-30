@@ -16,7 +16,7 @@ export class HomePage {
     this.usuario = new FormGroup({
       email: new FormControl('', [
         Validators.required,
-        Validators.email // Validación de correo
+        Validators.email
       ]),
       password: new FormControl('', [
         Validators.required,
@@ -33,7 +33,7 @@ export class HomePage {
       next: (response) => {
         if (response.role) {
           this.authService.setAuthenticated(true, response.role, response.id);
-          this.navigateBasedOnRole(response.role, response.id); // Pasa el ID aquí
+          this.navigateBasedOnRole(response.role, response.id);
         } else {
           this.presentAlert("Error Login", "Usuario o contraseña incorrectos");
         }
@@ -46,7 +46,7 @@ export class HomePage {
 
   navigateBasedOnRole(role: string, id: number) {
     if (role === 'profesor') {
-      this.router.navigate(['/profesor'], { state: { id: id } });  // Pasa el ID en el estado
+      this.router.navigate(['/profesor'], { state: { id: id } });
     } else if (role === 'alumno') {
       this.router.navigate(['/alumno']);
     } else {
