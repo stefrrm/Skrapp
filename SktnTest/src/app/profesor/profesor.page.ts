@@ -52,4 +52,19 @@ export class ProfesorPage implements OnInit {
       }
     );
   }
+
+  irAGenerarQR(curso: any) {
+    const navigationExtras: NavigationExtras = {
+      state: {
+        cursoId: curso.id,
+        nombreCurso: curso.nombre,
+        codigo: curso.codigo,
+        seccion: curso.seccion,
+        institucion: curso.institucion,
+        fechaHora: new Date().toLocaleString(),  // Puedes formatear esto según sea necesario
+        nombreProfesor: this.nombreProfesor
+      }
+    };
+    this.router.navigate(['generarqr'], navigationExtras);
+  }
 }

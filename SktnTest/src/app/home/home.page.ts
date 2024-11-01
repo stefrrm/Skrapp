@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AuthserviceService } from '../service/authservice.service';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',

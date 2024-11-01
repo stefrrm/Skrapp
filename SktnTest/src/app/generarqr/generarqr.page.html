@@ -1,19 +1,30 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>Curso : {{nombreCurso}}</ion-title>
+    <ion-title>{{ nombreProfesor }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content>
   <ion-card>
-    <img [src]="qrDataURL" *ngIf="qrDataURL" class="qrimage" />
     <ion-card-header>
-      <ion-card-title>Seccion : {{seccionCurso}}</ion-card-title>
-      <ion-card-subtitle>ID : {{idCurso}}</ion-card-subtitle>
+      <ion-card-title>{{ nombreCurso }}</ion-card-title>
     </ion-card-header>
-
     <ion-card-content>
-      Here's a small text description for the card content. Nothing more, nothing less.
+      <p><strong>Código:</strong> {{ codigo }}</p>
+      <p><strong>Sección:</strong> {{ seccion }}</p>
+      <p><strong>Institución:</strong> {{ institucion }}</p>
+      <p><strong>Fecha y Hora:</strong> {{ fechaHora }}</p>
+      <p><strong>Profesor:</strong> {{ nombreProfesor }}</p>
     </ion-card-content>
   </ion-card>
+
+  <!-- Aquí puedes agregar la lista dinámica de estudiantes que escaneen el QR -->
+  <ion-list>
+    <ion-item *ngFor="let alumno of alumnos">
+      <ion-label>
+        <h2>{{ alumno.nombre }}</h2>
+        <p>Estado: {{ alumno.estado ? 'Presente' : 'Ausente' }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

@@ -6,7 +6,8 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let curso of cursos" button detail="true" detail-icon="caret-forward-outline">
+    <ion-item *ngFor="let curso of cursos" button detail="true" detail-icon="caret-forward-outline"
+      (click)="irAGenerarQR(curso)">
       <ion-label>
         <h3>
           {{ curso.nombre }}

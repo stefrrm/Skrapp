@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-import * as qrcode from 'qrcode-generator';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-generarqr',
@@ -8,38 +7,29 @@ import * as qrcode from 'qrcode-generator';
   styleUrls: ['./generarqr.page.scss'],
 })
 export class GenerarqrPage implements OnInit {
+  cursoId: number = 0;
+  nombreCurso: string = '';
+  codigo: string = '';
+  seccion: string = '';
+  institucion: string = '';
+  fechaHora: string = '';
+  nombreProfesor: string = '';
+  alumnos: any[] = []; // También inicializa 'alumnos' aquí si es un array
 
-  nombreCurso = "";
-  seccionCurso = "";
-  idCurso = "";
-  codigoCurso = "";
-  qrDataURL = "";
-
-  constructor(private activeroute: ActivatedRoute, private router: Router) {
-    this.activeroute.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation()?.extras.state) {
-        this.nombreCurso = this.router.getCurrentNavigation()?.extras.state?.['nombre'];
-        this.seccionCurso = this.router.getCurrentNavigation()?.extras.state?.['seccion'];
-        this.idCurso = this.router.getCurrentNavigation()?.extras.state?.['id'];
-        this.codigoCurso = (this.router.getCurrentNavigation()?.extras.state?.['codigo']);
-      }
-    });
-  }
-
-  generadorQR() {
-    if (this.idCurso) {
-      const fechaActual = new Date().toISOString().split('T')[0];
-      const data = `${this.codigoCurso}-${this.seccionCurso}-${fechaActual}`;
-
-      let qr = qrcode(4, `L`);
-      qr.addData(data);
-      qr.make();
-      this.qrDataURL = qr.createDataURL(4);
+  constructor(private router: Router) {
+    const navigation = this.router.getCurrentNavigation();
+    if (navigation?.extras.state) {
+      this.cursoId = navigation.extras.state['cursoId'];
+      this.nombreCurso = navigation.extras.state['nombreCurso'];
+      this.codigo = navigation.extras.state['codigo'];
+      this.seccion = navigation.extras.state['seccion'];
+      this.institucion = navigation.extras.state['institucion'];
+      this.fechaHora = navigation.extras.state['fechaHora'];
+      this.nombreProfesor = navigation.extras.state['nombreProfesor'];
     }
   }
 
   ngOnInit() {
-    this.generadorQR();
+    // Puedes agregar lógica adicional aquí si es necesario
   }
-
 }
