@@ -73,7 +73,8 @@ def obtener_profesor_y_cursos(id_profesor):
                         "id": curso['id'],
                         "nombre": curso['nombre'],
                         "codigo": curso['codigo'],
-                        "seccion": curso['seccion']
+                        "seccion": curso['seccion'],
+                        "institucion": curso['institucion']
                     } for curso in cursos
                 ]
             }

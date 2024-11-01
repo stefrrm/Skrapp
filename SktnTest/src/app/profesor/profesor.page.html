@@ -1,13 +1,23 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Bienvenido {{ nombreProfesor }}</ion-title>
+    <ion-title>{{ nombreProfesor }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let curso of cursos">
-      {{ curso.nombre }}
+    <ion-item *ngFor="let curso of cursos" button detail="true" detail-icon="caret-forward-outline">
+      <ion-label>
+        <h3>
+          {{ curso.nombre }}
+        </h3>
+        <p>
+          {{ curso.seccion }}
+        </p>
+        <p>
+          {{ curso.institucion }}
+        </p>
+      </ion-label>
     </ion-item>
   </ion-list>
 </ion-content>
