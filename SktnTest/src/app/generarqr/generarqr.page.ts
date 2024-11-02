@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @Component({
   selector: 'app-generarqr',
@@ -14,7 +15,8 @@ export class GenerarqrPage implements OnInit {
   institucion: string = '';
   fechaHora: string = '';
   nombreProfesor: string = '';
-  alumnos: any[] = []; // También inicializa 'alumnos' aquí si es un array
+  alumnos: any[] = [];
+  codigoQR: string = '';
 
   constructor(private router: Router) {
     const navigation = this.router.getCurrentNavigation();
@@ -30,6 +32,6 @@ export class GenerarqrPage implements OnInit {
   }
 
   ngOnInit() {
-    // Puedes agregar lógica adicional aquí si es necesario
+    this.codigoQR = `Curso: ${this.nombreCurso}, Sección: ${this.seccion}`;
   }
 }

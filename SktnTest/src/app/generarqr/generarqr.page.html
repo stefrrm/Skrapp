@@ -17,6 +17,9 @@
       <p><strong>Profesor:</strong> {{ nombreProfesor }}</p>
     </ion-card-content>
   </ion-card>
+  <ion-card>
+    <qrcode [qrdata]="codigoQR"></qrcode>
+  </ion-card>
 
   <!-- Aquí puedes agregar la lista dinámica de estudiantes que escaneen el QR -->
   <ion-list>
