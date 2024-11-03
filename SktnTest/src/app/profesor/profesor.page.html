@@ -1,24 +1,33 @@
-<ion-header>
+<ion-header color="dark">
   <ion-toolbar>
-    <ion-title>{{ nombreProfesor }}</ion-title>
+    <ion-title class="profesor-title">Profesor/a {{ nombreProfesor }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-item *ngFor="let curso of cursos" button detail="true" detail-icon="caret-forward-outline"
-      (click)="irAGenerarQR(curso)">
-      <ion-label>
-        <h3>
-          {{ curso.nombre }}
-        </h3>
-        <p>
-          {{ curso.seccion }}
-        </p>
-        <p>
-          {{ curso.institucion }}
-        </p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+<ion-content color="primary">
+  <div class="container">
+    <ion-card color="dark">
+      <ion-card-header>
+        <ion-card-title>
+          <h1>Tus Cursos</h1>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-list>
+        <ion-item class="curso-item" *ngFor="let curso of cursos" button detail="true"
+          detail-icon="caret-forward-outline" (click)="irAGenerarQR(curso)">
+          <ion-label>
+            <h2>
+              {{ curso.nombre }}
+            </h2>
+            <p>
+              {{ curso.seccion }}
+            </p>
+            <p>
+              {{ curso.institucion }}
+            </p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+  </div>
 </ion-content>

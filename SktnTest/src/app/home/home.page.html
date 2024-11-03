@@ -1,16 +1,10 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Skrapp
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
+<ion-content color="primary" [fullscreen]="true">
   <div id="container">
     <ion-card>
       <ion-card-header>
-        <ion-card-title>Inicia Sesión</ion-card-title>
+        <ion-card-title>
+          <h1>Bienvenido a Skrapp</h1>
+        </ion-card-title>
       </ion-card-header>
 
       <ion-card-content>
@@ -28,8 +22,7 @@
         </form>
       </ion-card-content>
 
-      <ion-button shape="round" color="success" (click)="Ingreso()" fill="outline"
-        [disabled]="!usuario.valid">Ingresar</ion-button>
+      <ion-button shape="round" (click)="Ingreso()" fill="solid" [disabled]="!usuario.valid">Ingresar</ion-button>
     </ion-card>
   </div>
 </ion-content>

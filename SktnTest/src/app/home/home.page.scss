@@ -1,27 +1,57 @@
+/* Centra el contenedor principal */
 #container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 16px;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+
+ion-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 16px;
+  --ion-background-color: #1e1e1e;
+  color: #ffffff;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
 
-  color: #8c8c8c;
-
-  margin: 0;
+ion-card-title h1 {
+  font-size: 2.0em;
+  font-weight: bold;
+  color: gold;
+  margin-bottom: 8px;
 }
 
-#container a {
-  text-decoration: none;
+
+ion-card-subtitle h3 {
+  font-size: 1.2em;
+  font-weight: 500;
+  color: #cccccc;
+  margin-bottom: 16px;
+}
+
+
+ion-item {
+  --background: transparent;
+  --border-color: #4caf50;
+  margin-bottom: 12px;
+}
+
+ion-input {
+  color: #ffffff;
+  font-weight: 400;
+}
+
+
+ion-button {
+  font-size: 1em;
+  font-weight: bold;
+  width: 100%;
+  margin-top: 20px;
+  --background: #4caf50;
+  /* Color del botón */
+  --color: #ffffff;
+  /* Color de texto */
 }

@@ -1,0 +1,59 @@
+.profesor-title {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: gold;
+}
+
+
+ion-toolbar {
+    padding: 4px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    padding: 6px;
+}
+
+ion-card {
+    height: max-content;
+    width: 100%;
+    max-width: 1200px;
+    padding: 4px;
+    --ion-background-color: #1e1e1e;
+    color: #ffffff;
+    border-radius: 4px;
+}
+
+ion-card-title h1 {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 3px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;
+    text-align: center;
+}
+
+.curso-item {
+    --background: #4caf50;
+    --color: #ffffff;
+    border-radius: 15px;
+    margin-bottom: 6px;
+    padding: 2px 4px;
+    font-weight: bold;
+
+}
+
+ion-label h2 {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 4px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;
+}
+
+ion-label p {
+    font-size: 0.9em;
+    color: #000000;
+}

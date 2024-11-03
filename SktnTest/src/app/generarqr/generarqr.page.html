@@ -1,33 +1,33 @@
-<ion-header>
+<ion-header color="dark">
   <ion-toolbar>
-    <ion-title>{{ nombreProfesor }}</ion-title>
+    <ion-title class="profesor-title">Profesor/a {{ nombreProfesor }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>{{ nombreCurso }}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p><strong>Código:</strong> {{ codigo }}</p>
-      <p><strong>Sección:</strong> {{ seccion }}</p>
-      <p><strong>Institución:</strong> {{ institucion }}</p>
-      <p><strong>Fecha y Hora:</strong> {{ fechaHora }}</p>
-      <p><strong>Profesor:</strong> {{ nombreProfesor }}</p>
-    </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <qrcode [qrdata]="codigoQR"></qrcode>
-  </ion-card>
+<ion-content color="primary">
+  <div class="container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ nombreCurso }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="info-section">
+          <p><strong>Código:</strong> {{ codigo }}</p>
+          <p><strong>Sección:</strong> {{ seccion }}</p>
+          <p><strong>Institución:</strong> {{ institucion }}</p>
+          <p><strong>Fecha y Hora:</strong> {{ fechaHora }}</p>
+          <p><strong>Profesor:</strong> {{ nombreProfesor }}</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
 
-  <!-- Aquí puedes agregar la lista dinámica de estudiantes que escaneen el QR -->
-  <ion-list>
-    <ion-item *ngFor="let alumno of alumnos">
-      <ion-label>
-        <h2>{{ alumno.nombre }}</h2>
-        <p>Estado: {{ alumno.estado ? 'Presente' : 'Ausente' }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+    <ion-card class="qrcode">
+      <ion-card-header>
+        <ion-card-title>Código QR</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <qrcode [qrdata]="codigoQR"></qrcode>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
