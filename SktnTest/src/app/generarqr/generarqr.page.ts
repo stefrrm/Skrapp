@@ -32,6 +32,6 @@ export class GenerarqrPage implements OnInit {
   }
 
   ngOnInit() {
-    this.codigoQR = `Curso: ${this.nombreCurso}, Sección: ${this.seccion}`;
+    this.codigoQR = `Curso: ${this.nombreCurso}, Profesor: ${this.nombreProfesor}`;
   }
 }

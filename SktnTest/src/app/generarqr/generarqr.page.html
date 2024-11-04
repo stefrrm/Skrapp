@@ -1,14 +1,18 @@
 <ion-header color="dark">
   <ion-toolbar>
-    <ion-title class="profesor-title">Profesor/a {{ nombreProfesor }}</ion-title>
+    <ion-title slot="end" class="profesor-title">Profesor/a {{ nombreProfesor }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content color="primary">
   <div class="container">
-    <ion-card>
+    <ion-card class="data-card">
       <ion-card-header>
-        <ion-card-title>{{ nombreCurso }}</ion-card-title>
+        <ion-card-title>
+          <h1>
+            {{ nombreCurso }}
+          </h1>
+        </ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <div class="info-section">
@@ -18,15 +22,9 @@
           <p><strong>Fecha y Hora:</strong> {{ fechaHora }}</p>
           <p><strong>Profesor:</strong> {{ nombreProfesor }}</p>
         </div>
-      </ion-card-content>
-    </ion-card>
-
-    <ion-card class="qrcode">
-      <ion-card-header>
-        <ion-card-title>Código QR</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <qrcode [qrdata]="codigoQR"></qrcode>
+        <div class="qr-container">
+          <qrcode [qrdata]="codigoQR"></qrcode>
+        </div>
       </ion-card-content>
     </ion-card>
   </div>

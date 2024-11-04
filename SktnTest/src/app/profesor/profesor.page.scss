@@ -19,19 +19,17 @@ ion-toolbar {
 ion-card {
     height: max-content;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1000px;
     padding: 4px;
     --ion-background-color: #1e1e1e;
     color: #ffffff;
-    border-radius: 4px;
 }
 
 ion-card-title h1 {
-    font-size: 1.4em;
+    font-size: 2.0em;
     font-weight: bold;
-    color: #ffffff;
-    margin-bottom: 3px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;
+    color: gold;
+    margin-bottom: 8px;
     text-align: center;
 }
 

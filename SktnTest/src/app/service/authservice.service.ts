@@ -18,7 +18,7 @@ export class AuthserviceService {
     return this.authenticated;
   }
 
-  // Método para el login
+  // Metodo login
   login(email: string, password: string): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
@@ -46,7 +46,7 @@ export class AuthserviceService {
     return this.userId;
   }
 
-  // Método datos del profesor y sus cursos
+  // Método profe y cursos
   obtenerProfesorYCursos(id: number): Observable<any> {
     const profesorUrl = `${this.apiUrl}/profesor/${id}`;
     return this.http.get<any>(profesorUrl).pipe(

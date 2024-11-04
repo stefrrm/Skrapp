@@ -1,5 +1,12 @@
-.profesor-title {
+.app-title {
     font-size: 1.6em;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+
+.profesor-title {
+    font-size: 1.2em;
     font-weight: bold;
     color: gold;
 }
@@ -8,42 +15,39 @@
 .container {
     display: flex;
     flex-direction: column;
-    /* Asegura que los elementos se apilen verticalmente */
     align-items: center;
-    /* Centra el contenido */
     padding: 16px;
-    /* Añade espacio alrededor */
 }
+
 
 ion-card {
     width: 100%;
-    max-width: 600px;
-    /* Limita el ancho máximo del card */
+    max-width: 1000px;
     margin-bottom: 16px;
-    /* Espacio entre los cards */
     --ion-background-color: #1e1e1e;
-    /* Color de fondo del card */
     color: #ffffff;
-    /* Color del texto */
     border-radius: 12px;
-    /* Bordes redondeados */
+}
+
+ion-card-title h1 {
+    font-size: 2.0em;
+    font-weight: bold;
+    color: gold;
+    margin-bottom: 8px;
+    text-align: center;
 }
 
 .info-section p {
     margin: 8px 0;
-    /* Margen entre las líneas de información */
 }
 
-.qrcode {
+.qr-container {
     text-align: center;
-    /* Centra el contenido del QR */
 }
+
 
 qrcode {
     width: 100%;
-    /* Asegura que el QR ocupe todo el ancho */
-    max-width: 300px;
-    /* Limita el ancho del QR */
+    max-width: 900px;
     margin: auto;
-    /* Centra el QR */
 }
