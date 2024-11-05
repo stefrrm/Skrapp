@@ -23,8 +23,8 @@ export class AlumnoPage implements OnInit {
   ngOnInit() {
     this.user = history.state.id;
     if (this.user) {
-      const idProfesor = Number(this.user);
-      this.cargarDatosAlumno(idProfesor);
+      const idAlumno = Number(this.user);
+      this.cargarDatosAlumno(idAlumno);
     } else {
       console.error("ID de profesor no encontrado");
     }
