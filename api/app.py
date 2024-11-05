@@ -83,5 +83,25 @@ def obtener_profesor_y_cursos(id_profesor):
     return jsonify({"error": "Profesor no encontrado"}), 404
 
 
+@app.route('/alumno/<int:id_alumno>', methods=['GET'])
+def obtener_datos_alumno(id_alumno):
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM alumno WHERE id=%s", (id_alumno,))
+        alumno = cursor.fetchone()
+
+        if alumno:
+            resultado = {
+                "alumno": {
+                    "id": alumno['id'],
+                    "nombre": alumno['nombre'],
+                    "email": alumno['email'],
+                    "institucion": alumno['institucion'],
+                }
+            }
+            return jsonify(resultado), 200
+
+    return jsonify({"error": "Alumno no encontrado"}), 404
+
+
 if __name__ == "__main__":
     app.run(port=5000)

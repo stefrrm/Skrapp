@@ -57,6 +57,17 @@ export class AuthserviceService {
     );
   }
 
+  obtenerDatosAlumno(id: number): Observable<any> {
+    const alumnoUrl = `${this.apiUrl}/alumno/${id}`;
+    return this.http.get<any>(alumnoUrl).pipe(
+      catchError(err => {
+        console.error('Error al obtener datos del alumno', err);
+        return throwError(err);
+      })
+    );
+  }
+
+
   logout() {
     this.authenticated = false;
     this.userRole = null;

@@ -1,5 +1,11 @@
-.profesor-title {
+.app-title {
     font-size: 1.6em;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.profesor-title {
+    font-size: 1.2em;
     font-weight: bold;
     color: gold;
 }
@@ -23,6 +29,7 @@ ion-card {
     padding: 4px;
     --ion-background-color: #1e1e1e;
     color: #ffffff;
+    border-radius: 25px;
 }
 
 ion-card-title h1 {
@@ -36,8 +43,8 @@ ion-card-title h1 {
 .curso-item {
     --background: #4caf50;
     --color: #ffffff;
-    border-radius: 15px;
-    margin-bottom: 6px;
+    border-radius: 12px;
+    margin-bottom: 2px;
     padding: 2px 4px;
     font-weight: bold;
 

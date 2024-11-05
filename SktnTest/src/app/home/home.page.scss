@@ -1,4 +1,10 @@
-/* Centra el contenedor principal */
+.app-title {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+
 #container {
   display: flex;
   justify-content: center;
@@ -14,6 +20,7 @@ ion-card {
   padding: 16px;
   --ion-background-color: #1e1e1e;
   color: #ffffff;
+  border-radius: 40px;
 }
 
 

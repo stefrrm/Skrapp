@@ -4,13 +4,15 @@
     color: #ffffff;
 }
 
-
 .profesor-title {
     font-size: 1.2em;
     font-weight: bold;
     color: gold;
 }
 
+ion-toolbar {
+    padding: 4px;
+}
 
 .container {
     display: flex;
@@ -19,14 +21,13 @@
     padding: 16px;
 }
 
-
 ion-card {
     width: 100%;
     max-width: 1000px;
     margin-bottom: 16px;
     --ion-background-color: #1e1e1e;
     color: #ffffff;
-    border-radius: 12px;
+    border-radius: 25px;
 }
 
 ion-card-title h1 {
@@ -44,7 +45,6 @@ ion-card-title h1 {
 .qr-container {
     text-align: center;
 }
-
 
 qrcode {
     width: 100%;

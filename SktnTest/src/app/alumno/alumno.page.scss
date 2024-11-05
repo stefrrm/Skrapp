@@ -1,0 +1,41 @@
+.app-title {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.alumno-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: gold;
+}
+
+
+ion-toolbar {
+    padding: 4px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    padding: 6px;
+}
+
+ion-card {
+    height: max-content;
+    width: 100%;
+    max-width: 1000px;
+    padding: 4px;
+    --ion-background-color: #1e1e1e;
+    color: #ffffff;
+    border-radius: 25px;
+}
+
+ion-card-title h1 {
+    font-size: 2.0em;
+    font-weight: bold;
+    color: gold;
+    margin-bottom: 8px;
+    text-align: center;
+}

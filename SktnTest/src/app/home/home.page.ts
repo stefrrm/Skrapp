@@ -49,7 +49,7 @@ export class HomePage {
     if (role === 'profesor') {
       this.router.navigate(['/profesor'], { state: { id: id } });
     } else if (role === 'alumno') {
-      this.router.navigate(['/alumno']);
+      this.router.navigate(['/alumno'], { state: { id: id } });
     } else {
       this.presentAlert("Error", "Rol no reconocido");
     }
