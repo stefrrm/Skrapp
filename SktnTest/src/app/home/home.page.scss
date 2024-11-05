@@ -15,6 +15,7 @@
 
 
 ion-card {
+  text-align: center;
   width: 100%;
   max-width: 400px;
   padding: 16px;
@@ -53,13 +54,20 @@ ion-input {
 }
 
 
+
+
 ion-button {
-  font-size: 1em;
+  font-size: 1.2em;
   font-weight: bold;
-  width: 100%;
-  margin-top: 20px;
+  width: calc(100% - 20px);
+  margin: 10px auto;
+  padding: 10px 20px;
   --background: #4caf50;
-  /* Color del botón */
   --color: #ffffff;
-  /* Color de texto */
+  border-radius: 8px;
+}
+
+
+ion-button:hover {
+  --background: #45a049;
 }

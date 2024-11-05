@@ -45,6 +45,12 @@ export class HomePage {
     });
   }
 
+  onEnter() {
+    if (this.usuario.valid) {
+      this.Ingreso();
+    }
+  }
+
   navigateBasedOnRole(role: string, id: number) {
     if (role === 'profesor') {
       this.router.navigate(['/profesor'], { state: { id: id } });

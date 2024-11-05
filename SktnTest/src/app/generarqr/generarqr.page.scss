@@ -46,8 +46,8 @@ ion-card-title h1 {
     text-align: center;
 }
 
-qrcode {
-    width: 100%;
-    max-width: 900px;
+.qr-container qrcode {
+    width: 200%;
+    max-width: 1800px;
     margin: auto;
 }
