@@ -30,7 +30,7 @@ def login():
     print(f"Email: {email}, Password: {password}")
 
     with connection.cursor() as cursor:
-        # Validación de profesor
+        # Validacion profe
         cursor.execute(
             "SELECT * FROM profesor WHERE email=%s AND password=%s", (email, password))
         profesor = cursor.fetchone()
@@ -39,7 +39,7 @@ def login():
         if profesor:
             return jsonify({"role": "profesor", "id": profesor['id']}), 200
 
-        # Validación de alumno
+        # Validacion alumno
         cursor.execute(
             "SELECT * FROM alumno WHERE email=%s AND password=%s", (email, password))
         alumno = cursor.fetchone()

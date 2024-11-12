@@ -3,9 +3,25 @@
     <ion-title slot="start" class="app-title">
       Skapp
     </ion-title>
-    <ion-title slot="end" class="alumno-title">Alumno/a {{ nombreAlumno }} - {{ institucion }}</ion-title>
+    <div slot="end">
+      <ion-chip>
+        <ion-avatar>
+          <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        </ion-avatar>
+        <ion-label>Alumno/a {{ nombreAlumno }} - {{ institucion }}</ion-label>
+      </ion-chip>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content color="primary" [fullscreen]="true">
+  <div class="container">
+    <ion-card color="dark">
+      <ion-card-header>
+        <ion-card-title>
+          <h1>Escanea el QR</h1>
+        </ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </div>
 </ion-content>
