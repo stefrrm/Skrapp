@@ -50,11 +50,11 @@ export class AlumnoPage implements OnInit {
     );
   }
 
-  scanCode() {
+  scan() {
     this.barcodeScannerService.scanCode().then(data => {
-      this.scannedData = data;
-    }).catch(err => {
-      console.error('Error al escanear el código:', err);
+      console.log('Resultado del escaneo:', data);
+    }).catch(error => {
+      console.log('Error en el escaneo:', error);
     });
   }
 
