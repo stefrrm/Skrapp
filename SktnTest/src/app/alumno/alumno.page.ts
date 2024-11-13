@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AuthserviceService } from '../service/authservice.service';
+import { BarcodeScannerService } from '../service/barcode-scanner.service';
 
 @Component({
   selector: 'app-alumno',
@@ -13,11 +14,13 @@ export class AlumnoPage implements OnInit {
   nombreAlumno: string = '';
   institucion: string = '';
   emailAlumno: string = '';
+  scannedData: any;
 
   constructor(
     private authService: AuthserviceService,
     private route: ActivatedRoute,
-    private activeroute: ActivatedRoute
+    private activeroute: ActivatedRoute,
+    private barcodeScannerService: BarcodeScannerService
   ) { }
 
   ngOnInit() {
@@ -46,5 +49,14 @@ export class AlumnoPage implements OnInit {
       }
     );
   }
+
+  scanCode() {
+    this.barcodeScannerService.scanCode().then(data => {
+      this.scannedData = data;
+    }).catch(err => {
+      console.error('Error al escanear el código:', err);
+    });
+  }
+
 
 }

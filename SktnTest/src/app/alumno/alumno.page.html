@@ -18,10 +18,13 @@
   <div class="container">
     <ion-card color="dark">
       <ion-card-header>
-        <ion-card-title>
-          <h1>Escanea el QR</h1>
-        </ion-card-title>
+        <ion-card-title>Escáner de QR</ion-card-title>
       </ion-card-header>
+
+      <ion-card-content>
+        <p *ngIf="scannedData">Datos escaneados: {{ scannedData.text }}</p>
+        <ion-button (click)="scanCode()">Escanear QR</ion-button>
+      </ion-card-content>
     </ion-card>
   </div>
 </ion-content>
