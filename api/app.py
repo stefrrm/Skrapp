@@ -3,7 +3,11 @@ from flask_cors import CORS
 import pymysql.cursors
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={
+    r"/*": {
+        "origins": "http://localhost:8100"
+    }
+})
 
 
 connection = pymysql.connect(
@@ -15,6 +19,10 @@ connection = pymysql.connect(
 )
 print("Conexión exitosa a la base de datos.")
 
+@app.before_request
+def handle_options():
+    if request.method == 'OPTIONS':
+        return jsonify({}), 200
 
 @app.route("/")
 def home():

@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class AuthserviceService {
   private authenticated = false;
-  private apiUrl = 'http://localhost:5000';
+  private apiUrl = 'https://hb1nq133-5000.brs.devtunnels.ms';
   private userRole: string | null = null;
   private userId: number | null = null;
 
